@@ -1,6 +1,12 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <limits.h>
+#include "../../sdk/dexsdk.h"
+
+#define KEY_LEFT -106
+#define KEY_UP -105
+#define KEY_DOWN -104
+#define KEY_RIGHT -103
+#define KEY_X 32
+
+
 int check(int board[]){
 	if(board[0] != 0 && board[0] == board[1] && board[0] == board[2]) return board[0];
 	else if(board[3] != 0 && board[3] == board[4] && board[3] == board[5]) return board[3];
@@ -11,17 +17,6 @@ int check(int board[]){
 	else if(board[0] != 0 && board[0] == board[4] && board[0] == board[8]) return board[0];
 	else if(board[6] != 0 && board[6] == board[4] && board[6] == board[2]) return board[6];
 	else return 0;	
-}
-void play(int board[],int move){
-	int index;
-	printf("Enter move [1-9]:");
-	scanf("%d",&index);	
-	while(board[index-1] != 0){
-		printf("Space is already Occupied!\n");
-		printf("Enter move [1-9]:");
-		scanf("%d",&index);		
-	}
-	board[index-1] = move;
 }
 void drawBoard(int board[]){
 	char draw[9];
@@ -36,6 +31,65 @@ void drawBoard(int board[]){
 	printf(" %c | %c | %c\n",draw[3],draw[4],draw[5]);
 	printf("___+___+___\n");
 	printf(" %c | %c | %c\n",draw[6],draw[7],draw[8]);
+
+}
+void play(int board[],int move){
+	int cur_x = 0, cur_y = 1, x, y, choice = 0;
+	int input = 0, index;
+
+	clrscr();
+	drawBoard(board);
+	printf("\n%d %d\n", cur_x, cur_y);
+	update_cursor(cur_x,cur_y);
+
+
+	while(choice != 1){
+		input = getchar();
+		printf("%d %c\n", input);
+		switch(input){
+			case KEY_UP:
+				cur_x=cur_x-2;
+				break;
+			case KEY_DOWN:
+				cur_x=cur_x+2;
+				break;
+			case KEY_LEFT:
+				cur_y=cur_y-4;
+				break;
+			case KEY_RIGHT:
+				cur_y=cur_y+4;
+				break;
+			case KEY_X:
+				if(cur_x == 0) x = 0;
+				else if(cur_x == 2) x = 1;
+				else if(cur_x == 4) x = 2;
+
+				if(cur_y == 1) y = 0;
+				else if(cur_y == 5) y = 1;
+				else if(cur_y == 9) y = 2;
+				int index = (x*3)+y;
+
+				if(board[index] == 0){
+					choice = 1;
+					board[index] = move;
+				}
+				break;
+			default:
+				cur_x = cur_x;
+				cur_y = cur_y;
+				break;
+		}
+
+		clrscr();
+		drawBoard(board);
+		printf("\n%d %d\n", cur_x, cur_y);
+		update_cursor(cur_x,cur_y);
+
+	}
+
+	
+
+
 
 }
 int minmax(int board[9], int computer) {
@@ -56,7 +110,7 @@ int minmax(int board[9], int computer) {
             board[i] = 0;
         }
     }
-    printf("%d , %d\n",value,move);
+    // printf("%d , %d\n",value,move);
     if(move == -1) return 0;
     return value;
 }
@@ -76,11 +130,11 @@ void computerplay(int board[9],int computer) {
             }
         }
     }
-    printf("MOVE: %d\n",move);
+    // printf("MOVE: %d\n",move);
     board[move]=computer;
 }
 int main(){
-	int board[9] = {0,0,0,0,0,0,0,0,0};
+	int board[9] = {1,0,-1,0,0,0,0,0,0};
 	int playerFlag = rand()%2;
 	int player,computer;
 	int player_turn = 0;
@@ -101,15 +155,15 @@ int main(){
 	for(turn=0;turn<9 && check(board)== 0;turn++){
 		if((turn+player_turn)%2 != 0){
 			drawBoard(board);
-			printf("\n Player's Turn\n");
 			play(board,player);
 		}
 		else{
-			drawBoard(board);
-			printf("\n Computer's Turn\n");
 			computerplay(board,computer);
 		}
 	}
+
+	clrscr();
 	drawBoard(board);
+	
 	return 0;
 }
