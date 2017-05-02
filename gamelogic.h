@@ -2,7 +2,9 @@
 #define KEY_UP -105
 #define KEY_DOWN -104
 #define KEY_RIGHT -103
-#define KEY_X 32
+#define KEY_SPACE 32
+#define KEY_ESC 27
+
 
 int check(int board[]){
 	if(board[0] != 0 && board[0] == board[1] && board[0] == board[2]) return board[0];
@@ -17,44 +19,57 @@ int check(int board[]){
 }
 
 void play(int board[],int move){
-	int cur_x = 0, cur_y = 1, x, y, choice = 0;
+	int cur_x = 4, cur_y = 21, x = 0, y = 0, choice = 0, base_y;
 	int input = 0, index;
 	while(choice != 1){
 		clrscr();
-		drawBoard(board);
 		printf("\nUser's Turn\n");
-		printf("\n%d %d\n", cur_x, cur_y);
-		update_cursor(cur_x,cur_y);
+		drawBoard(board);
+		printf("\n");
+		highlight();
+		printf("[ESC]");
+		defaultColor();
+		printf(" Exit \t");
 
+		highlight();
+		printf("[ARROW KEYS]");
+		defaultColor();
+		printf(" Navigation \t");
+
+		highlight();
+		printf("[SPACE]");
+		defaultColor();
+		printf(" Finalize move \t");
+
+		update_cursor(cur_x,cur_y);
 
 		input = getchar();
 		switch(input){
 			case KEY_UP:
-				cur_x = (cur_x-2) < 0 ? 4 : cur_x-2;
+				cur_x = (cur_x-3) < 4 ? 10 : cur_x-3;
+				x = (x-1) < 0 ? 2 : x-1;
 				break;
 			case KEY_DOWN:
-				cur_x = (cur_x+2) > 4 ? 0 : cur_x+2;
+				cur_x = (cur_x+3) > 10 ? 4 : cur_x+3;
+				x = (x+1) > 2 ? 0 : x+1;
 				break;
 			case KEY_LEFT:
-				cur_y = (cur_y-4) < 1 ? 9 : cur_y-4;
+				cur_y = (cur_y-6) < 21 ? 33 : cur_y-6;
+				y = (y-1) < 0 ? 2 : y-1;
 				break;
 			case KEY_RIGHT:
-				cur_y = (cur_y+4) > 9 ? 1 : cur_y+4;
+				cur_y = (cur_y+6) > 33 ? 21 : cur_y+6;
+				y = (y+1) > 2 ? 0 : y+1;
 				break;
-			case KEY_X:
-				if(cur_x == 0) x = 0;
-				else if(cur_x == 2) x = 1;
-				else if(cur_x == 4) x = 2;
-
-				if(cur_y == 1) y = 0;
-				else if(cur_y == 5) y = 1;
-				else if(cur_y == 9) y = 2;
-				int index = (x*3)+y;
-
+			case KEY_SPACE:
+				index = (x*3)+y;
 				if(board[index] == 0){
 					choice = 1;
 					board[index] = move;
 				}
+				break;
+			case KEY_ESC:
+				exit(0);
 				break;
 			default:
 				cur_x = cur_x;
@@ -93,8 +108,9 @@ void startGame(){
 	}
 
 	clrscr();
+	printf("\n____ WINS!\n");
 	drawBoard(board);
-	printf("Finished\n");
+	printf("\nPress any button to continue...\n");
 	getch();
 }
 

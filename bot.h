@@ -27,9 +27,9 @@ void computerplay(int board[9],int computer) {
     int i;
 
     clrscr();
-    drawBoard(board);
     printf("\nAI's Turn\n");
-
+    drawBoard(board);
+    update_cursor(-1,-1);
     delay(20);
 
     for(i = 0; i < 9; ++i) {

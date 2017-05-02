@@ -20,7 +20,7 @@ int main(){
 			case KEY_DOWN:
 				cur_x = (cur_x+1) > 9 ? 7 : (cur_x+1);	
 				break;
-			case KEY_X:
+			case KEY_SPACE:
 				select(cur_x, &choice);
 				break;
 			default:
