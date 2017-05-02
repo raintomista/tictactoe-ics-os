@@ -19,13 +19,15 @@ int check(int board[]){
 void play(int board[],int move){
 	int cur_x = 0, cur_y = 1, x, y, choice = 0;
 	int input = 0, index;
-
-	printf("\n%d %d\n", cur_x, cur_y);
-	update_cursor(cur_x,cur_y);
-
 	while(choice != 1){
+		clrscr();
+		drawBoard(board);
+		printf("\nUser's Turn\n");
+		printf("\n%d %d\n", cur_x, cur_y);
+		update_cursor(cur_x,cur_y);
+
+
 		input = getchar();
-		printf("%d %c\n", input);
 		switch(input){
 			case KEY_UP:
 				cur_x=cur_x-2;
@@ -59,7 +61,6 @@ void play(int board[],int move){
 				cur_y = cur_y;
 				break;
 		}
-
 	}
 }
 
@@ -84,17 +85,17 @@ void startGame(){
 	}
 	for(turn=0;turn<9 && check(board)== 0;turn++){
 		if((turn+player_turn)%2 != 0){
-			clrscr();
-			drawBoard(board);
-			printf("User's turn \n");
 			play(board,player);
 		}
 		else{
-			clrscr();
-			drawBoard(board);
-			printf("AI's turn \n");
+			computerplay(board,computer);
 		}
 	}
+
+	clrscr();
+	drawBoard(board);
+	printf("Finished\n");
+	getch();
 }
 
 void select(int cur_x, int * choice){

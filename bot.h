@@ -25,6 +25,13 @@ void computerplay(int board[9],int computer) {
     int move = -1;
     int value = INT_MIN;
     int i;
+
+    clrscr();
+    drawBoard(board);
+    printf("\nAI's Turn\n");
+
+    delay(20);
+
     for(i = 0; i < 9; ++i) {
         if(board[i] == 0) {
             board[i] = computer;

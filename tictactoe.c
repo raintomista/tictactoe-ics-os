@@ -1,4 +1,5 @@
 #include "../../sdk/dexsdk.h"
+#include "../../sdk/time.h"
 #include "graphics.h"
 #include "bot.h"
 #include "gamelogic.h"
