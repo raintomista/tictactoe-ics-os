@@ -30,16 +30,16 @@ void play(int board[],int move){
 		input = getchar();
 		switch(input){
 			case KEY_UP:
-				cur_x=cur_x-2;
+				cur_x = (cur_x-2) < 0 ? 4 : cur_x-2;
 				break;
 			case KEY_DOWN:
-				cur_x=cur_x+2;
+				cur_x = (cur_x+2) > 4 ? 0 : cur_x+2;
 				break;
 			case KEY_LEFT:
-				cur_y=cur_y-4;
+				cur_y = (cur_y-4) < 1 ? 9 : cur_y-4;
 				break;
 			case KEY_RIGHT:
-				cur_y=cur_y+4;
+				cur_y = (cur_y+4) > 9 ? 1 : cur_y+4;
 				break;
 			case KEY_X:
 				if(cur_x == 0) x = 0;
