@@ -131,7 +131,6 @@ int terminal(int board[9]){
 void startGame(){
 	int board[9] = {0,0,0,0,0,0,0,0,0};
 	int playerFlag = rand()%2;
-	int player,computer;
 	int player_turn = 0;
 	int turn = 0;
 	int temp;
