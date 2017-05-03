@@ -128,7 +128,7 @@ int terminal(int board[9]){
 	return 1;
 }
 
-void startGame(){
+void startGame(int difficulty){
 	int board[9] = {0,0,0,0,0,0,0,0,0};
 	int playerFlag = rand()%2;
 	int player_turn = 0;
@@ -148,7 +148,14 @@ void startGame(){
 			play(board,player);
 		}
 		else{
-			findBest(board,computer);
+			switch(difficulty){
+				case 1:
+					findGood(board, computer);
+					break;
+				case 2:
+					findBest(board,computer);
+					break;
+			}
 		}
 	}
 	clrscr();
@@ -171,10 +178,11 @@ void select(int cur_x, int * choice){
 	switch(cur_x){
 		case 7:
 			*choice = 1;
-			startGame();
+			startGame(*choice);
 			break;
 		case 8:
 			*choice = 2;
+			startGame(*choice);
 			break;
 		case 9:
 			*choice = 3;

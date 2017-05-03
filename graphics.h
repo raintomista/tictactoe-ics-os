@@ -22,13 +22,13 @@ void drawMenu(int cur_x, int cur_y){
 
 	if(cur_x == 7) highlight();
 	else defaultColor();
-	printf("Play Game\n");
+	printf("Play Easy\n");
 
 	defaultColor();
 	printf("\t\t\t\t\t\t\t\t\t\t\t");
 	if(cur_x == 8) highlight();
 	else defaultColor();
-	printf("Credits\n");
+	printf("Play Hard\n");
 
 	defaultColor();
 	printf("\t\t\t\t\t\t\t\t\t\t\t");

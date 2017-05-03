@@ -90,3 +90,19 @@ void findBest(int board[9],int computer){
     // printf("BEST: %d\n",move);
     board[move]=computer; //do best move
 }
+
+
+void findGood(int board[9],int computer){
+    int move = rand()%10;
+
+    clrscr();
+    printf("\nAI's Turn\n");
+    drawBoard(board);
+    update_cursor(-1,-1);
+    delay(20);
+
+    while(board[move]!=0){
+        move = rand()%10;
+    }
+    board[move] = computer;
+}
