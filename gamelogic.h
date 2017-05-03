@@ -154,13 +154,13 @@ void startGame(){
 	clrscr();
 	int score = check(board,computer);
 	if(check(board,computer)==1){
-		printf("Computer Won!\n");
+		printf("\nComputer Won!\n");
 	}
 	else if(check(board,computer)==-1){
-		printf("Player Won!\n");
+		printf("\nPlayer Won!\n");
 	}
 	else{
-		printf("Draw\n");
+		printf("\nDraw\n");
 	}
 	drawBoard(board);
 	printf("\nPress any button to continue...\n");

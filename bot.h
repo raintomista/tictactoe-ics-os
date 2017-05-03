@@ -68,18 +68,25 @@ void findBest(int board[9],int computer){
     int move;
     int value = INT_MIN;
     int i;
+
+    clrscr();
+    printf("\nAI's Turn\n");
+    drawBoard(board);
+    update_cursor(-1,-1);
+    delay(20);
+    
     for(i=0;i<9;i++){
         if(board[i] == 0) {
             board[i] = computer;
             int new_value = minmax(board, -1);
             board[i] = 0;
             if(new_value > value) {
-                printf("newval:%d value:%d\n",new_value,value);
+                // printf("newval:%d value:%d\n",new_value,value);
                 value = new_value;
                 move = i;
             }
         }
     }
-    printf("BEST: %d\n",move);
+    // printf("BEST: %d\n",move);
     board[move]=computer; //do best move
 }
