@@ -8,9 +8,11 @@ int main(){
 	int choice = 0;
 	int cur_x=7, cur_y=1, input;
 
+	set_graphics(VGA_640X480X16);
+
 	do{
 		clrscr();
-		drawMenu(cur_x, cur_y);
+		drawMenu(500, 375);
 
 		input = getchar();
 		switch(input){
