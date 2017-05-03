@@ -6,24 +6,31 @@
 
 int main(){
 	int choice = 0;
-	int cur_x=7, cur_y=1, input;
 
-	set_graphics(VGA_640X480X16);
+	int targetWidth = 500;
+	int targetHeight = 375;
+
+	int x = ((width/2)-(targetWidth/2))-1;
+	int y = ((height/2)-(targetHeight/2))-1;
+
+	int cur_x = x+190, cur_y = y+200, input;
 
 	do{
 		clrscr();
-		drawMenu(500, 375);
+		set_graphics(VGA_640X480X16);
+		drawMenu(targetWidth, targetHeight);
+		write_char(42, cur_x, cur_y, YELLOW, LARGE_FONT);
 
-		input = getchar();
+		input = getch();
 		switch(input){
 			case KEY_UP:
-				cur_x = (cur_x-1) < 7 ? 9 : (cur_x-1);	
+				cur_y = (cur_y-25) < y+200 ? y+250 : (cur_y-25);	
 				break;
 			case KEY_DOWN:
-				cur_x = (cur_x+1) > 9 ? 7 : (cur_x+1);	
+				cur_y = (cur_y+25) > y+250 ? y+200 : (cur_y+25);	
 				break;
 			case KEY_SPACE:
-				select(cur_x, &choice);
+				select(cur_y, &choice);
 				break;
 			default:
 				break;

@@ -61,7 +61,7 @@ void drawMenu(int targetWidth, int targetHeight){
 	int x = ((width/2)-(targetWidth/2))-1;
 	int y = ((height/2)-(targetHeight/2))-1;
 
-	drawScreenBorders(targetWidth, targetHeight);
+	// drawScreenBorders(targetWidth, targetHeight);
 	screenLogo(x+58, y+50, 13);
 
 	write_text("Play Easy", x+208, y+200,YELLOW,LARGE_FONT);

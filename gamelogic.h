@@ -5,6 +5,10 @@
 #define KEY_SPACE 32
 #define KEY_ESC 27
 
+#define CHOICE_1 252
+	#define CHOICE_2 277
+	#define CHOICE_3 302
+
 
 int check(int board[],int computer){
 	if(board[0] != 0 && board[0] == board[1] && board[0] == board[2]){
@@ -175,16 +179,25 @@ void startGame(int difficulty){
 }
 
 void select(int cur_x, int * choice){
+	int targetWidth = 500;
+	int targetHeight = 375;
+
+	int x = ((width/2)-(targetWidth/2))-1;
+	int y = ((height/2)-(targetHeight/2))-1;
+
+	
+
+
 	switch(cur_x){
-		case 7:
+		case CHOICE_1:
 			*choice = 1;
 			startGame(*choice);
 			break;
-		case 8:
+		case CHOICE_2:
 			*choice = 2;
 			startGame(*choice);
 			break;
-		case 9:
+		case CHOICE_3:
 			*choice = 3;
 			break;
 	}
