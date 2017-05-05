@@ -69,11 +69,10 @@ void findBest(int board[9],int computer){
     int value = INT_MIN;
     int i;
 
-    clrscr();
-    printf("\nAI's Turn\n");
-    // drawBoard(board);
-    update_cursor(-1,-1);
-    delay(20);
+    write_text(" User's Turn",20,20,BLACK,LARGE_FONT);
+    write_text(" AI's Turn",20,20,YELLOW,LARGE_FONT);
+    reprintMoves(board, YELLOW);
+    delay(2500);
     
     for(i=0;i<9;i++){
         if(board[i] == 0) {
@@ -88,21 +87,23 @@ void findBest(int board[9],int computer){
         }
     }
     // printf("BEST: %d\n",move);
+    reprintMoves(board, BLACK);
+    write_text(" AI's Turn",20,20,BLACK,LARGE_FONT);
     board[move]=computer; //do best move
 }
 
 
 void findGood(int board[9],int computer){
     int move = rand()%10;
-
-    clrscr();
-    printf("\nAI's Turn\n");
-    // drawBoard(board);
-    update_cursor(-1,-1);
-    delay(20);
+    write_text(" AI's Turn",20,20,YELLOW,LARGE_FONT);
+    reprintMoves(board, YELLOW);
+    delay(2500);
 
     while(board[move]!=0){
         move = rand()%10;
     }
+    
+    reprintMoves(board, BLACK);
+    write_text(" AI's Turn",20,20,BLACK,LARGE_FONT);
     board[move] = computer;
 }

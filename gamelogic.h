@@ -58,61 +58,89 @@ int check(int board[],int computer){
 	else return 0;	
 }
 void play(int board[],int move){
-	int cur_x = 4, cur_y = 21, x = 0, y = 0, choice = 0, base_y;
-	int input = 0, index;
-	while(choice != 1){
-		clrscr();
-		printf("\nUser's Turn\n");
-		// drawBoard(board);
-		printf("\n");
-		highlight();
-		printf("[ESC]");
-		defaultColor();
-		printf(" Exit \t");
+	write_text(" User's Turn",20,20,YELLOW,LARGE_FONT);
 
-		highlight();
-		printf("[ARROW KEYS]");
-		defaultColor();
-		printf(" Navigation \t");
+	int valid = 0;
+	int input = getchar();
 
-		highlight();
-		printf("[SPACE]");
-		defaultColor();
-		printf(" Finalize move \t");
-
-		update_cursor(cur_x,cur_y);
-
-		input = getchar();
+	while(valid != 1){
 		switch(input){
-			case KEY_UP:
-				cur_x = (cur_x-3) < 4 ? 10 : cur_x-3;
-				x = (x-1) < 0 ? 2 : x-1;
+			case 49:
+				if(board[0] == 0){
+					reprintMoves(board, BLACK);
+					board[0] = move;
+					write_text(" User's Turn",20,20,BLACK,LARGE_FONT);
+					valid = 1;
+				}
 				break;
-			case KEY_DOWN:
-				cur_x = (cur_x+3) > 10 ? 4 : cur_x+3;
-				x = (x+1) > 2 ? 0 : x+1;
+			case 50:
+				if(board[1] == 0){
+					reprintMoves(board, BLACK);
+					board[1] = move;
+					write_text(" User's Turn",20,20,BLACK,LARGE_FONT);
+					valid = 1;
+				}
 				break;
-			case KEY_LEFT:
-				cur_y = (cur_y-6) < 21 ? 33 : cur_y-6;
-				y = (y-1) < 0 ? 2 : y-1;
+			case 51:
+				if(board[2] == 0){
+					reprintMoves(board, BLACK);
+					board[2] = move;
+					write_text(" User's Turn",20,20,BLACK,LARGE_FONT);
+					valid = 1;
+				}
 				break;
-			case KEY_RIGHT:
-				cur_y = (cur_y+6) > 33 ? 21 : cur_y+6;
-				y = (y+1) > 2 ? 0 : y+1;
+			case 52:
+				if(board[3] == 0){
+					reprintMoves(board, BLACK);
+					board[3] = move;
+					write_text(" User's Turn",20,20,BLACK,LARGE_FONT);
+					valid = 1;
+				}
 				break;
-			case KEY_SPACE:
-				index = (x*3)+y;
-				if(board[index] == 0){
-					choice = 1;
-					board[index] = move;
+			case 53:
+				if(board[4] == 0){
+					reprintMoves(board, BLACK);
+					board[4] = move;
+					write_text(" User's Turn",20,20,BLACK,LARGE_FONT);
+					valid = 1;
+				}
+				break;
+			case 54:
+				if(board[5] == 0){
+					reprintMoves(board, BLACK);
+					board[5] = move;
+					write_text(" User's Turn",20,20,BLACK,LARGE_FONT);
+					valid = 1;
+				}
+				break;
+			case 55:
+				if(board[6] == 0){
+					reprintMoves(board, BLACK);
+					board[6] = move;
+					write_text(" User's Turn",20,20,BLACK,LARGE_FONT);
+					valid = 1;
+				}
+				break;
+			case 56:
+				if(board[7] == 0){
+					reprintMoves(board, BLACK);
+					board[7] = move;
+					write_text(" User's Turn",20,20,BLACK,LARGE_FONT);
+					valid = 1;
+				}
+				break;
+			case 57:
+				if(board[8] == 0){
+					reprintMoves(board, BLACK);
+					board[8] = move;
+	    			write_text(" User's Turn",20,20,BLACK,LARGE_FONT);
+	    			valid = 1;
 				}
 				break;
 			case KEY_ESC:
 				exit(0);
 				break;
 			default:
-				cur_x = cur_x;
-				cur_y = cur_y;
 				break;
 		}
 	}
@@ -131,55 +159,58 @@ int terminal(int board[9]){
 void startGame(int difficulty){
 	set_graphics(VGA_640X480X16);
 	clrscr();
-	write_text(" *******SASAS**",20,20,YELLOW,LARGE_FONT);
+	int board[9] = {0,0,0,0,0,0,0,0,0};
+	int playerFlag = rand()%2;
+	int player_turn = 0;
+	int turn = 0;
+	int temp;
+	int computer = -1;
+	int player = 1;
+	if(playerFlag == 0){
+		player_turn = 0;
+	}
+	else if(playerFlag == 1){
+		player_turn = 1;
 
-
-
-	int board[9] = {1,1,1,-1,-1,1,-1,0,1};
-	// int playerFlag = rand()%2;
-	// int player_turn = 0;
-	// int turn = 0;
-	// int temp;
-	// int computer = -1;
-	// int player = 1;
-	// if(playerFlag == 0){
-	// 	player_turn = 0;
-	// }
-	// else if(playerFlag == 1){
-	// 	player_turn = 1;
-
-	// }
-	// for(turn=0;turn<9 && terminal(board)==-1 && check(board,computer)==0;turn++){
-	// 	if((turn+player_turn)%2 != 0){
-	// 		play(board,player);
-	// 	}
-	// 	else{
-	// 		switch(difficulty){
-	// 			case 1:
-	// 				findGood(board, computer);
-	// 				break;
-	// 			case 2:
-	// 				findBest(board,computer);
-	// 				break;
-	// 		}
-	// 	}
-	// }
-	// clrscr();
-	// int score = check(board,computer);
-	// if(check(board,computer)==1){
-	// 	printf("\nComputer Won!\n");
-	// }
-	// else if(check(board,computer)==-1){
-	// 	printf("\nPlayer Won!\n");
-	// }
-	// else{
-	// 	printf("\nDraw\n");
-	// }
-	// drawBoard(board);
+	}
 
 	drawBoard(board, 300, 300);
-	printf("\nPress any button to continue...\n");
+
+	for(turn=0;turn<9 && terminal(board)==-1 && check(board,computer)==0;turn++){
+		if((turn+player_turn)%2 != 0){
+			reprintMoves(board, YELLOW);
+			play(board,player);
+		}
+		else{
+			switch(difficulty){
+				case 1:
+					findGood(board, computer);
+					break;
+				case 2:
+					findBest(board,computer);
+					break;
+			}
+		}
+	}
+
+	int score = check(board,computer);
+	if(check(board,computer)==1){
+   		write_text(" Computer Won!",20,20,YELLOW,LARGE_FONT);
+	}
+	else if(check(board,computer)==-1){
+   		write_text(" Player Won!",20,20,YELLOW,LARGE_FONT);
+	}
+	else{
+   		write_text(" Draw!",20,20,YELLOW,LARGE_FONT);
+	}
+
+	reprintMoves(board, YELLOW);
+	write_text(" Press any button to continue...",300,440,YELLOW,LARGE_FONT);
 	getch();
+
+	set_graphics(VGA_640X480X16);
+	clrscr();
+	drawMenu(500, 375);
 }
 
 void select(int selector, int * choice){

@@ -121,18 +121,18 @@ void drawMove(int board[], int index, int x, int y, char color, int size){
 	}
 }
 
-void cleanBoard(int board[]){
-	drawMove(board, 0, TILE1_X, TILE1_Y, BLACK, LARGE_FONT); //First Tile
-	drawMove(board, 1, TILE2_X, TILE2_Y, BLACK, LARGE_FONT); //Second Tile
-	drawMove(board, 2, TILE3_X, TILE3_Y, BLACK, LARGE_FONT); //Third Tile
+void reprintMoves(int board[], char color){
+	drawMove(board, 0, TILE1_X, TILE1_Y, color, LARGE_FONT); //First Tile
+	drawMove(board, 1, TILE2_X, TILE2_Y, color, LARGE_FONT); //Second Tile
+	drawMove(board, 2, TILE3_X, TILE3_Y, color, LARGE_FONT); //Third Tile
 
-	drawMove(board, 3, TILE4_X, TILE4_Y, BLACK, LARGE_FONT); //Fourth Tile
-	drawMove(board, 4, TILE5_X, TILE5_Y, BLACK, LARGE_FONT); //Fifth Tile
-	drawMove(board, 5, TILE6_X, TILE6_Y, BLACK, LARGE_FONT); //Sixth Tile
+	drawMove(board, 3, TILE4_X, TILE4_Y, color, LARGE_FONT); //Fourth Tile
+	drawMove(board, 4, TILE5_X, TILE5_Y, color, LARGE_FONT); //Fifth Tile
+	drawMove(board, 5, TILE6_X, TILE6_Y, color, LARGE_FONT); //Sixth Tile
 
-	drawMove(board, 6, TILE7_X, TILE7_Y, BLACK, LARGE_FONT); //Seventh Tile
-	drawMove(board, 7, TILE8_X, TILE8_Y, BLACK, LARGE_FONT); //Eight Tile
-	drawMove(board, 8, TILE9_X, TILE9_Y, BLACK, LARGE_FONT); //Nine Tile
+	drawMove(board, 6, TILE7_X, TILE7_Y, color, LARGE_FONT); //Seventh Tile
+	drawMove(board, 7, TILE8_X, TILE8_Y, color, LARGE_FONT); //Eight Tile
+	drawMove(board, 8, TILE9_X, TILE9_Y, color, LARGE_FONT); //Nine Tile
 }
 
 void drawBoard(int board[], int targetWidth, int targetHeight){
@@ -221,10 +221,5 @@ void drawBoard(int board[], int targetWidth, int targetHeight){
 	drawMove(board, 6, TILE7_X, TILE7_Y, YELLOW, LARGE_FONT); //Seventh Tile
 	drawMove(board, 7, TILE8_X, TILE8_Y, YELLOW, LARGE_FONT); //Eight Tile
 	drawMove(board, 8, TILE9_X, TILE9_Y, YELLOW, LARGE_FONT); //Nine Tile
-
-	getch();
-
-	cleanBoard(board);
-
 }
 
