@@ -71,7 +71,7 @@ void findBest(int board[9],int computer){
 
     clrscr();
     printf("\nAI's Turn\n");
-    drawBoard(board);
+    // drawBoard(board);
     update_cursor(-1,-1);
     delay(20);
     
@@ -97,7 +97,7 @@ void findGood(int board[9],int computer){
 
     clrscr();
     printf("\nAI's Turn\n");
-    drawBoard(board);
+    // drawBoard(board);
     update_cursor(-1,-1);
     delay(20);
 

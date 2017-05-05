@@ -63,7 +63,7 @@ void play(int board[],int move){
 	while(choice != 1){
 		clrscr();
 		printf("\nUser's Turn\n");
-		drawBoard(board);
+		// drawBoard(board);
 		printf("\n");
 		highlight();
 		printf("[ESC]");
@@ -129,62 +129,73 @@ int terminal(int board[9]){
 }
 
 void startGame(int difficulty){
-	int board[9] = {0,0,0,0,0,0,0,0,0};
-	int playerFlag = rand()%2;
-	int player_turn = 0;
-	int turn = 0;
-	int temp;
-	int computer = -1;
-	int player = 1;
-	if(playerFlag == 0){
-		player_turn = 0;
-	}
-	else if(playerFlag == 1){
-		player_turn = 1;
-
-	}
-	for(turn=0;turn<9 && terminal(board)==-1 && check(board,computer)==0;turn++){
-		if((turn+player_turn)%2 != 0){
-			play(board,player);
-		}
-		else{
-			switch(difficulty){
-				case 1:
-					findGood(board, computer);
-					break;
-				case 2:
-					findBest(board,computer);
-					break;
-			}
-		}
-	}
+	set_graphics(VGA_640X480X16);
 	clrscr();
-	int score = check(board,computer);
-	if(check(board,computer)==1){
-		printf("\nComputer Won!\n");
-	}
-	else if(check(board,computer)==-1){
-		printf("\nPlayer Won!\n");
-	}
-	else{
-		printf("\nDraw\n");
-	}
-	drawBoard(board);
+	write_text(" *******SASAS**",20,20,YELLOW,LARGE_FONT);
+
+
+
+	int board[9] = {1,1,1,-1,-1,1,-1,0,1};
+	// int playerFlag = rand()%2;
+	// int player_turn = 0;
+	// int turn = 0;
+	// int temp;
+	// int computer = -1;
+	// int player = 1;
+	// if(playerFlag == 0){
+	// 	player_turn = 0;
+	// }
+	// else if(playerFlag == 1){
+	// 	player_turn = 1;
+
+	// }
+	// for(turn=0;turn<9 && terminal(board)==-1 && check(board,computer)==0;turn++){
+	// 	if((turn+player_turn)%2 != 0){
+	// 		play(board,player);
+	// 	}
+	// 	else{
+	// 		switch(difficulty){
+	// 			case 1:
+	// 				findGood(board, computer);
+	// 				break;
+	// 			case 2:
+	// 				findBest(board,computer);
+	// 				break;
+	// 		}
+	// 	}
+	// }
+	// clrscr();
+	// int score = check(board,computer);
+	// if(check(board,computer)==1){
+	// 	printf("\nComputer Won!\n");
+	// }
+	// else if(check(board,computer)==-1){
+	// 	printf("\nPlayer Won!\n");
+	// }
+	// else{
+	// 	printf("\nDraw\n");
+	// }
+	// drawBoard(board);
+
+	drawBoard(board, 300, 300);
 	printf("\nPress any button to continue...\n");
 	getch();
 }
 
-void select(int cur_x, int * choice){
-	switch(cur_x){
-		case 7:
+void select(int selector, int * choice){
+	int x = ((WIDTH/2)-(TARGET_WIDTH/2))-1;
+	int y = ((HEIGHT/2)-(TARGET_HEIGHT/2))-1;
+
+	switch(selector){
+		case 1:
 			*choice = 1;
 			startGame(*choice);
 			break;
-		case 8:
+		case 2:
 			*choice = 2;
 			startGame(*choice);
 			break;
-		case 9:
+		case 3:
 			*choice = 3;
 			break;
 	}
