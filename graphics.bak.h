@@ -4,15 +4,6 @@
 int max_colors=255;
 int width=640;
 int height=480;
-int TILE1_X, TILE1_Y;
-int TILE2_X, TILE2_Y;
-int TILE3_X, TILE3_Y;
-int TILE4_X, TILE4_Y;
-int TILE5_X, TILE5_Y;
-int TILE6_X, TILE6_Y;
-int TILE7_X, TILE7_Y;
-int TILE8_X, TILE8_Y;
-int TILE9_X, TILE9_Y;
 
 void highlight(){
 	textbackground(WHITE);
@@ -82,144 +73,124 @@ void drawMenu(int targetWidth, int targetHeight){
 	write_text("Exit", x+208, y+250,YELLOW,LARGE_FONT);
 }
 
-void drawMove(int board[], int index, int x, int y, char color, int size){
-	if(board[index]==-1) write_char(79, x, y, color, size); //Draw Space
-	else if(board[index] == 1) write_char(88, x, y, color, size);
-	else{
-		write_char(91, x-10, y, color, size);
-		switch(index){
-			case 0:
-				write_char(49, x, y, color, size);
-				break;
-			case 1:
-				write_char(50, x, y, color, size);
-				break;
-			case 2:
-				write_char(51, x, y, color, size);
-				break;
-			case 3:
-				write_char(52, x, y, color, size);
-				break;
-			case 4:
-				write_char(53, x, y, color, size);
-				break;
-			case 5:
-				write_char(54, x, y, color, size);
-				break;
-			case 6:
-				write_char(55, x, y, color, size);
-				break;
-			case 7:
-				write_char(56, x, y, color, size);
-				break;
-			case 8:
-				write_char(57, x, y, color, size);
-				break;
-		}
-		write_char(93, x+10	, y, color, size);
-
-	}
-}
-
-void reprintMoves(int board[], char color){
-	drawMove(board, 0, TILE1_X, TILE1_Y, color, LARGE_FONT); //First Tile
-	drawMove(board, 1, TILE2_X, TILE2_Y, color, LARGE_FONT); //Second Tile
-	drawMove(board, 2, TILE3_X, TILE3_Y, color, LARGE_FONT); //Third Tile
-
-	drawMove(board, 3, TILE4_X, TILE4_Y, color, LARGE_FONT); //Fourth Tile
-	drawMove(board, 4, TILE5_X, TILE5_Y, color, LARGE_FONT); //Fifth Tile
-	drawMove(board, 5, TILE6_X, TILE6_Y, color, LARGE_FONT); //Sixth Tile
-
-	drawMove(board, 6, TILE7_X, TILE7_Y, color, LARGE_FONT); //Seventh Tile
-	drawMove(board, 7, TILE8_X, TILE8_Y, color, LARGE_FONT); //Eight Tile
-	drawMove(board, 8, TILE9_X, TILE9_Y, color, LARGE_FONT); //Nine Tile
-}
-
 void drawBoard(int board[], int targetWidth, int targetHeight){
+	// char draw[9];
+	// int i=0;
+	// for(i=0;i<9;i++){
+	// 	if(board[i]==0) draw[i]=' ';
+	// 	else if(board[i] == 1) draw[i]='X';
+	// 	else draw[i]='O';
+	// }
+	// printf("\t\t\t\t\t\t _____ _____ _____\n");
+	// printf("\t\t\t\t\t\t|     |     |     |\n");
+	// printf("\t\t\t\t\t\t|  %c  |  %c  |  %c  |\n",draw[0],draw[1],draw[2]);
+	// printf("\t\t\t\t\t\t|_____|_____|_____|\n");
+	// printf("\t\t\t\t\t\t|     |     |     |\n");
+	// printf("\t\t\t\t\t\t|  %c  |  %c  |  %c  |\n",draw[3],draw[4],draw[5]);
+	// printf("\t\t\t\t\t\t|_____|_____|_____|\n");
+	// printf("\t\t\t\t\t\t|     |     |     |\n");
+	// printf("\t\t\t\t\t\t|  %c  |  %c  |  %c  |\n",draw[6],draw[7],draw[8]);
+	// printf("\t\t\t\t\t\t|_____|_____|_____|\n");
+
 	int x = ((width/2)-(targetWidth/2))-1;
 	int y = ((height/2)-(targetHeight/2))-1;
 	int increment_x = targetWidth/3;
 	int increment_y = targetWidth/3;
 
-	// Top Border
+
 	write_char(201, x, y, YELLOW, LARGE_FONT); //Upper Left Border
 	drawHorizontalBorder(x+8, (x+targetWidth)-2, y, YELLOW, LARGE_FONT);
 	write_char(187, x+targetWidth, y, YELLOW, LARGE_FONT); //Upper Right Border
 
-	// Left and Right Border
-	drawVerticalBorder(x, y+8, (y+targetHeight)-15, YELLOW, LARGE_FONT); //Left Border
-	drawVerticalBorder(x+targetWidth, y+8, (y+targetHeight)-15, YELLOW, LARGE_FONT); //Right Border
-
-	// Bottom Border
+	drawVerticalBorder(x, y+8, (y+targetHeight)-15, YELLOW, LARGE_FONT);
 	write_char(200, x, y+targetHeight, YELLOW, LARGE_FONT); //Lower Left Border
+
+
 	drawHorizontalBorder(x+8, (x+targetWidth)-2, y+targetHeight, YELLOW, LARGE_FONT);
+	drawVerticalBorder(x+targetWidth, y+8, (y+targetHeight)-15, YELLOW, LARGE_FONT);
 	write_char(188, x+targetWidth, y+targetHeight, YELLOW, LARGE_FONT); //Lower Right Border
 
-	// Vertical Grid
 	drawVerticalBorder(x+increment_x, y+8, (y+targetHeight)-9, YELLOW, LARGE_FONT);
 	drawVerticalBorder(x+(increment_x*2), y+8, (y+targetHeight)-9, YELLOW, LARGE_FONT);
 	drawVerticalBorder(x+(increment_x*3), y+8, (y+targetHeight)-9, YELLOW, LARGE_FONT);
 
-	// Horizontal Grid
 	drawHorizontalBorder(x+7, (x+targetWidth)-2, y+(increment_y*1), YELLOW, LARGE_FONT);
 	drawHorizontalBorder(x+7, (x+targetWidth)-2, y+(increment_y*2), YELLOW, LARGE_FONT);
 	drawHorizontalBorder(x+7, (x+targetWidth)-2, y+(increment_y*3), YELLOW, LARGE_FONT);
 
+
+	drawHorizontalBorder(x+7, (x+increment_x)-3, y, RED, LARGE_FONT);
+	drawVerticalBorder(x+increment_x, y+8, y+increment_y-10, RED, LARGE_FONT);
+	drawHorizontalBorder(x+7, (x+increment_x)-3, y+increment_y, RED, LARGE_FONT);
+
+
 	/*First Tile*/
 	int x1 = x+7, x2 = (x+increment_x)-3;
 	int y1 = y+8, y2 = y+increment_y-10;
-	TILE1_X = (x1+x2)/2, TILE1_Y = (y1+y2)/2;
+	int TILE1_X = (x1+x2)/2, TILE1_Y = (y1+y2)/2;
+
 
 	/*Second Tile*/
 	x1 = x+increment_x+7, x2 = x+(increment_x*2)-3;
 	y1 = y+8, y2 = y+increment_y-10;
-	TILE2_X = (x1+x2)/2, TILE2_Y = (y1+y2)/2;
+	int TILE2_X = (x1+x2)/2, TILE2_Y = (y1+y2)/2;
+
 
 	/*Third Tile*/
 	x1 = x+(increment_x*2)+7, x2 = x+(increment_x*3)-3;
 	y1 = y+8, y2 = y+increment_y-10;
-	TILE3_X = (x1+x2)/2, TILE3_Y = (y1+y2)/2;
+	int TILE3_X = (x1+x2)/2, TILE3_Y = (y1+y2)/2;
+
+
+	write_char(88, TILE1_X, TILE1_Y, YELLOW, LARGE_FONT); //First Tile
+	write_char(88, TILE2_X, TILE2_Y, YELLOW, LARGE_FONT); //Second Tile
+	write_char(88, TILE3_X, TILE3_Y, YELLOW, LARGE_FONT); //Second Tile
+
 
 	/*Fourth Tile*/
 	x1 = x+7, x2 = (x+increment_x)-3;
 	y1 = y+increment_y+8, y2 = y+(increment_y*2)-10;
-	TILE4_X = (x1+x2)/2, TILE4_Y = (y1+y2)/2;
+	int TILE4_X = (x1+x2)/2, TILE4_Y = (y1+y2)/2;
 
 	/*Fifth Tile*/
 	x1 = x+increment_x+7, x2 = x+(increment_x*2)-3;
 	y1 = y+increment_y+8, y2 = y+(increment_y*2)-10;
-	TILE5_X = (x1+x2)/2, TILE5_Y = (y1+y2)/2;
+	int TILE5_X = (x1+x2)/2, TILE5_Y = (y1+y2)/2;
+
 
 	/*Sixth Tile*/
 	x1 = x+(increment_x*2)+7, x2 = x+(increment_x*3)-3;
 	y1 = y+increment_y+8, y2 = y+(increment_y*2)-10;
-	TILE6_X = (x1+x2)/2, TILE6_Y = (y1+y2)/2;
+	int TILE6_X = (x1+x2)/2, TILE6_Y = (y1+y2)/2;
+
+	write_char(88, TILE4_X, TILE4_Y, YELLOW, LARGE_FONT); //First Tile
+	write_char(88, TILE5_X, TILE5_Y, YELLOW, LARGE_FONT); //Second Tile
+	write_char(88, TILE6_X, TILE6_Y, YELLOW, LARGE_FONT); //Second Tile
+
 
 	/*Seventh Tile*/
 	x1 = x+7, x2 = (x+increment_x)-3;
 	y1 = y+(increment_y*2)+8, y2 = y+(increment_y*3)-10;
-	TILE7_X = (x1+x2)/2, TILE7_Y = (y1+y2)/2;
+	int TILE7_X = (x1+x2)/2, TILE7_Y = (y1+y2)/2;
 
 	/*Eighth Tile*/
 	x1 = x+increment_x+7, x2 = x+(increment_x*2)-3;
 	y1 = y+(increment_y*2)+8, y2 = y+(increment_y*3)-10;
-	TILE8_X = (x1+x2)/2, TILE8_Y = (y1+y2)/2;
+	int TILE8_X = (x1+x2)/2, TILE8_Y = (y1+y2)/2;
+
 
 	/*Ninth Tile*/
 	x1 = x+(increment_x*2)+7, x2 = x+(increment_x*3)-3;
 	y1 = y+(increment_y*2)+8, y2 = y+(increment_y*3)-10;
-	TILE9_X = (x1+x2)/2, TILE9_Y = (y1+y2)/2;
+	int TILE9_X = (x1+x2)/2, TILE9_Y = (y1+y2)/2;
 
-	drawMove(board, 0, TILE1_X, TILE1_Y, YELLOW, LARGE_FONT); //First Tile
-	drawMove(board, 1, TILE2_X, TILE2_Y, YELLOW, LARGE_FONT); //Second Tile
-	drawMove(board, 2, TILE3_X, TILE3_Y, YELLOW, LARGE_FONT); //Third Tile
+	write_char(88, TILE7_X, TILE7_Y, YELLOW, LARGE_FONT); //First Tile
+	write_char(88, TILE8_X, TILE8_Y, YELLOW, LARGE_FONT); //Second Tile
+	write_char(88, TILE9_X, TILE9_Y, YELLOW, LARGE_FONT); //Second Tile
 
-	drawMove(board, 3, TILE4_X, TILE4_Y, YELLOW, LARGE_FONT); //Fourth Tile
-	drawMove(board, 4, TILE5_X, TILE5_Y, YELLOW, LARGE_FONT); //Fifth Tile
-	drawMove(board, 5, TILE6_X, TILE6_Y, YELLOW, LARGE_FONT); //Sixth Tile
 
-	drawMove(board, 6, TILE7_X, TILE7_Y, YELLOW, LARGE_FONT); //Seventh Tile
-	drawMove(board, 7, TILE8_X, TILE8_Y, YELLOW, LARGE_FONT); //Eight Tile
-	drawMove(board, 8, TILE9_X, TILE9_Y, YELLOW, LARGE_FONT); //Nine Tile
+
+
+
+
 }
-
