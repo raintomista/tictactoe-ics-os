@@ -64,6 +64,10 @@ void play(int board[],int move){
 	write_text("       [NUM KEY]",180,430,WHITE,LARGE_FONT);
 	write_text(" Press           to select tile ",180,430,LIGHTGRAY,LARGE_FONT);
 
+	write_text("        [ESC]           ",180,450,WHITE,LARGE_FONT);
+	write_text("              Exit game         ",180,450,LIGHTGRAY,LARGE_FONT);
+
+
 	int valid = 0;
 	int input = getchar();
 
@@ -76,6 +80,8 @@ void play(int board[],int move){
 					valid = 1;
 					write_text("       [NUM KEY]",180,430,BLACK,LARGE_FONT);
 					write_text(" Press           to select tile ",180,430,BLACK,LARGE_FONT);
+					write_text("        [ESC]           ",180,450,BLACK,LARGE_FONT);
+					write_text("              Exit game         ",180,450,BLACK,LARGE_FONT);
 				}
 				break;
 			case 50:
@@ -85,6 +91,8 @@ void play(int board[],int move){
 					valid = 1;
 					write_text("       [NUM KEY]",180,430,BLACK,LARGE_FONT);
 					write_text(" Press           to select tile ",180,430,BLACK,LARGE_FONT);
+					write_text("        [ESC]           ",180,450,BLACK,LARGE_FONT);
+					write_text("              Exit game         ",180,450,BLACK,LARGE_FONT);
 				}
 				break;
 			case 51:
@@ -94,6 +102,8 @@ void play(int board[],int move){
 					valid = 1;
 					write_text("       [NUM KEY]",180,430,BLACK,LARGE_FONT);
 					write_text(" Press           to select tile ",180,430,BLACK,LARGE_FONT);
+					write_text("        [ESC]           ",180,450,BLACK,LARGE_FONT);
+					write_text("              Exit game         ",180,450,BLACK,LARGE_FONT);
 				}
 				break;
 			case 52:
@@ -103,6 +113,8 @@ void play(int board[],int move){
 					valid = 1;
 					write_text("       [NUM KEY]",180,430,BLACK,LARGE_FONT);
 					write_text(" Press           to select tile ",180,430,BLACK,LARGE_FONT);
+					write_text("        [ESC]           ",180,450,BLACK,LARGE_FONT);
+					write_text("              Exit game         ",180,450,BLACK,LARGE_FONT);
 				}
 				break;
 			case 53:
@@ -112,6 +124,8 @@ void play(int board[],int move){
 					valid = 1;
 					write_text("       [NUM KEY]",180,430,BLACK,LARGE_FONT);
 					write_text(" Press           to select tile ",180,430,BLACK,LARGE_FONT);
+					write_text("        [ESC]           ",180,450,BLACK,LARGE_FONT);
+					write_text("              Exit game         ",180,450,BLACK,LARGE_FONT);
 				}
 				break;
 			case 54:
@@ -121,6 +135,8 @@ void play(int board[],int move){
 					valid = 1;
 					write_text("       [NUM KEY]",180,430,BLACK,LARGE_FONT);
 					write_text(" Press           to select tile ",180,430,BLACK,LARGE_FONT);
+					write_text("        [ESC]           ",180,450,BLACK,LARGE_FONT);
+					write_text("              Exit game         ",180,450,BLACK,LARGE_FONT);
 				}
 				break;
 			case 55:
@@ -130,6 +146,8 @@ void play(int board[],int move){
 					valid = 1;
 					write_text("       [NUM KEY]",180,430,BLACK,LARGE_FONT);
 					write_text(" Press           to select tile ",180,430,BLACK,LARGE_FONT);
+					write_text("        [ESC]           ",180,450,BLACK,LARGE_FONT);
+					write_text("              Exit game         ",180,450,BLACK,LARGE_FONT);
 				}
 				break;
 			case 56:
@@ -139,6 +157,8 @@ void play(int board[],int move){
 					valid = 1;
 					write_text("       [NUM KEY]",180,430,BLACK,LARGE_FONT);
 					write_text(" Press           to select tile ",180,430,BLACK,LARGE_FONT);
+					write_text("        [ESC]           ",180,450,BLACK,LARGE_FONT);
+					write_text("              Exit game         ",180,450,BLACK,LARGE_FONT);
 				}
 				break;
 			case 57:
@@ -148,11 +168,14 @@ void play(int board[],int move){
 	    			valid = 1;
 	    			write_text("       [NUM KEY]",180,430,BLACK,LARGE_FONT);
 					write_text(" Press           to select tile ",180,430,BLACK,LARGE_FONT);
+					write_text("        [ESC]           ",180,450,BLACK,LARGE_FONT);
+					write_text("              Exit game         ",180,450,BLACK,LARGE_FONT);
 				}
 				break;
 			case KEY_ESC:
-				set_graphics(VGA_TEXT80X25X16);
+				set_graphics(VGA_320X200X256);
 				clrscr();
+				set_graphics(VGA_TEXT80X25X16);
 				exit(0);
 				break;
 			default:

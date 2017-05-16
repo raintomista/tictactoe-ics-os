@@ -47,6 +47,9 @@ int main(){
 
 		
 	}while(choice != 3);
+	clrscr();
+	set_graphics(VGA_320X200X256);
+	set_graphics(VGA_TEXT80X25X16);
 
 	return 0;
 }
