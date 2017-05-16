@@ -58,8 +58,11 @@ int check(int board[],int computer){
 	else return 0;	
 }
 void play(int board[],int move){
-	write_text(" Computer's Turn",20,20,BLACK,LARGE_FONT);
-	write_text(" User's Turn",20,20,LIGHTRED,LARGE_FONT);
+	write_text(" Computer's Turn",160,70,BLACK,LARGE_FONT);
+	write_text(" User's Turn",160,70,LIGHTRED,LARGE_FONT);
+
+	write_text("       [NUM KEY]",180,430,WHITE,LARGE_FONT);
+	write_text(" Press           to select tile ",180,430,LIGHTGRAY,LARGE_FONT);
 
 	int valid = 0;
 	int input = getchar();
@@ -71,6 +74,8 @@ void play(int board[],int move){
 					drawMove(board, 0, 1, LARGE_FONT);
 					board[0] = move;
 					valid = 1;
+					write_text("       [NUM KEY]",180,430,BLACK,LARGE_FONT);
+					write_text(" Press           to select tile ",180,430,BLACK,LARGE_FONT);
 				}
 				break;
 			case 50:
@@ -78,6 +83,8 @@ void play(int board[],int move){
 					drawMove(board, 1, 1, LARGE_FONT);
 					board[1] = move;
 					valid = 1;
+					write_text("       [NUM KEY]",180,430,BLACK,LARGE_FONT);
+					write_text(" Press           to select tile ",180,430,BLACK,LARGE_FONT);
 				}
 				break;
 			case 51:
@@ -85,6 +92,8 @@ void play(int board[],int move){
 					drawMove(board, 2, 1, LARGE_FONT);
 					board[2] = move;
 					valid = 1;
+					write_text("       [NUM KEY]",180,430,BLACK,LARGE_FONT);
+					write_text(" Press           to select tile ",180,430,BLACK,LARGE_FONT);
 				}
 				break;
 			case 52:
@@ -92,6 +101,8 @@ void play(int board[],int move){
 					drawMove(board, 3, 1, LARGE_FONT);
 					board[3] = move;
 					valid = 1;
+					write_text("       [NUM KEY]",180,430,BLACK,LARGE_FONT);
+					write_text(" Press           to select tile ",180,430,BLACK,LARGE_FONT);
 				}
 				break;
 			case 53:
@@ -99,6 +110,8 @@ void play(int board[],int move){
 					drawMove(board, 4, 1, LARGE_FONT);
 					board[4] = move;
 					valid = 1;
+					write_text("       [NUM KEY]",180,430,BLACK,LARGE_FONT);
+					write_text(" Press           to select tile ",180,430,BLACK,LARGE_FONT);
 				}
 				break;
 			case 54:
@@ -106,6 +119,8 @@ void play(int board[],int move){
 					drawMove(board, 5, 1, LARGE_FONT);
 					board[5] = move;
 					valid = 1;
+					write_text("       [NUM KEY]",180,430,BLACK,LARGE_FONT);
+					write_text(" Press           to select tile ",180,430,BLACK,LARGE_FONT);
 				}
 				break;
 			case 55:
@@ -113,6 +128,8 @@ void play(int board[],int move){
 					drawMove(board, 6, 1, LARGE_FONT);
 					board[6] = move;
 					valid = 1;
+					write_text("       [NUM KEY]",180,430,BLACK,LARGE_FONT);
+					write_text(" Press           to select tile ",180,430,BLACK,LARGE_FONT);
 				}
 				break;
 			case 56:
@@ -120,17 +137,22 @@ void play(int board[],int move){
 					drawMove(board, 7, 1, LARGE_FONT);
 					board[7] = move;
 					valid = 1;
+					write_text("       [NUM KEY]",180,430,BLACK,LARGE_FONT);
+					write_text(" Press           to select tile ",180,430,BLACK,LARGE_FONT);
 				}
 				break;
 			case 57:
 				if(board[8] == 0){
 					drawMove(board, 8, 1, LARGE_FONT);
 					board[8] = move;
-	 
 	    			valid = 1;
+	    			write_text("       [NUM KEY]",180,430,BLACK,LARGE_FONT);
+					write_text(" Press           to select tile ",180,430,BLACK,LARGE_FONT);
 				}
 				break;
 			case KEY_ESC:
+				set_graphics(VGA_TEXT80X25X16);
+				clrscr();
 				exit(0);
 				break;
 			default:
@@ -189,23 +211,27 @@ void startGame(int difficulty){
 	reprintMoves(board, 0);
 	int score = check(board,computer);
 	if(check(board,computer)==1){
-		write_text(" Computer's Turn",20,20,BLACK,LARGE_FONT);
-		write_text(" User's Turn",20,20,BLACK,LARGE_FONT);
+		write_text(" Computer's Turn",160,70,BLACK,LARGE_FONT);
+		write_text(" User's Turn",160,70,BLACK,LARGE_FONT);
 
-   		write_text(" Computer Won!",20,20,CYAN,LARGE_FONT);
+   		write_text(" Computer Won!",160,70,CYAN,LARGE_FONT);
 	}
 	else if(check(board,computer)==-1){
-		write_text(" Computer's Turn",20,20,BLACK,LARGE_FONT);
-		write_text(" User's Turn",20,20,BLACK,LARGE_FONT);
-   		write_text(" Player Won!",20,20,LIGHTRED,LARGE_FONT);
+		write_text(" Computer's Turn",160,70,BLACK,LARGE_FONT);
+		write_text(" User's Turn",160,70,BLACK,LARGE_FONT);
+   		write_text(" Player Won!",160,70,LIGHTRED,LARGE_FONT);
 	}
 	else{
-		write_text(" Computer's Turn",20,20,BLACK,LARGE_FONT);
-		write_text(" User's Turn",20,20,BLACK,LARGE_FONT);
-   		write_text(" Draw!",20,20,MAGENTA,LARGE_FONT);
+		write_text(" Computer's Turn",160,70,BLACK,LARGE_FONT);
+		write_text(" User's Turn",160,70,BLACK,LARGE_FONT);
+   		write_text(" Draw!",160,70,MAGENTA,LARGE_FONT);
 	}
 
-	write_text(" Press any button to continue...",300,440,YELLOW,LARGE_FONT);
+	write_text("       [NUM KEY]",180,430,BLACK,LARGE_FONT);
+    write_text(" Press           to select tile ",180,430,BLACK,LARGE_FONT);
+	
+	write_text("        ANY BUTTON",180,430,WHITE,LARGE_FONT);
+	write_text("<<PRESS            TO CONTINUE>>",180,430,LIGHTGRAY,LARGE_FONT);
 	getch();
 
 	set_graphics(VGA_640X480X16);

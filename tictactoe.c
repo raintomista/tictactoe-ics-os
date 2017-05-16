@@ -19,9 +19,10 @@ int main(){
 	set_graphics(VGA_640X480X16);
 	clrscr();
 	drawMenu(TARGET_WIDTH, TARGET_HEIGHT);
-	drawSelector(cur_x, cur_y, LIGHTRED, LARGE_FONT);
 
 	do{
+		drawSelector(cur_x, cur_y, LIGHTRED, LARGE_FONT);
+
 		input = getchar();
 		switch(input){
 			case KEY_UP:
@@ -38,7 +39,7 @@ int main(){
 
 				break;
 			case KEY_SPACE:
-				drawSelector(cur_x, cur_y, BLACK, LARGE_FONT);
+				drawSelector(cur_x, cur_y, RED, LARGE_FONT);
 				select(selector, &choice);
 				break;
 		}
