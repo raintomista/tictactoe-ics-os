@@ -67,7 +67,7 @@ void play(int board[],int move){
 		switch(input){
 			case 49:
 				if(board[0] == 0){
-					reprintMoves(board, BLACK);
+					reprintMoves(board, LIGHTCYAN);
 					board[0] = move;
 					write_text(" User's Turn",20,20,BLACK,LARGE_FONT);
 					valid = 1;
@@ -75,7 +75,7 @@ void play(int board[],int move){
 				break;
 			case 50:
 				if(board[1] == 0){
-					reprintMoves(board, BLACK);
+					reprintMoves(board, LIGHTCYAN);
 					board[1] = move;
 					write_text(" User's Turn",20,20,BLACK,LARGE_FONT);
 					valid = 1;
@@ -83,7 +83,7 @@ void play(int board[],int move){
 				break;
 			case 51:
 				if(board[2] == 0){
-					reprintMoves(board, BLACK);
+					reprintMoves(board, LIGHTCYAN);
 					board[2] = move;
 					write_text(" User's Turn",20,20,BLACK,LARGE_FONT);
 					valid = 1;
@@ -91,7 +91,7 @@ void play(int board[],int move){
 				break;
 			case 52:
 				if(board[3] == 0){
-					reprintMoves(board, BLACK);
+					reprintMoves(board, LIGHTCYAN);
 					board[3] = move;
 					write_text(" User's Turn",20,20,BLACK,LARGE_FONT);
 					valid = 1;
@@ -99,7 +99,7 @@ void play(int board[],int move){
 				break;
 			case 53:
 				if(board[4] == 0){
-					reprintMoves(board, BLACK);
+					reprintMoves(board, LIGHTCYAN);
 					board[4] = move;
 					write_text(" User's Turn",20,20,BLACK,LARGE_FONT);
 					valid = 1;
@@ -107,7 +107,7 @@ void play(int board[],int move){
 				break;
 			case 54:
 				if(board[5] == 0){
-					reprintMoves(board, BLACK);
+					reprintMoves(board, LIGHTCYAN);
 					board[5] = move;
 					write_text(" User's Turn",20,20,BLACK,LARGE_FONT);
 					valid = 1;
@@ -115,7 +115,7 @@ void play(int board[],int move){
 				break;
 			case 55:
 				if(board[6] == 0){
-					reprintMoves(board, BLACK);
+					reprintMoves(board, LIGHTCYAN);
 					board[6] = move;
 					write_text(" User's Turn",20,20,BLACK,LARGE_FONT);
 					valid = 1;
@@ -123,7 +123,7 @@ void play(int board[],int move){
 				break;
 			case 56:
 				if(board[7] == 0){
-					reprintMoves(board, BLACK);
+					reprintMoves(board, LIGHTCYAN);
 					board[7] = move;
 					write_text(" User's Turn",20,20,BLACK,LARGE_FONT);
 					valid = 1;
@@ -131,7 +131,7 @@ void play(int board[],int move){
 				break;
 			case 57:
 				if(board[8] == 0){
-					reprintMoves(board, BLACK);
+					reprintMoves(board, LIGHTCYAN);
 					board[8] = move;
 	    			write_text(" User's Turn",20,20,BLACK,LARGE_FONT);
 	    			valid = 1;
@@ -178,7 +178,7 @@ void startGame(int difficulty){
 
 	for(turn=0;turn<9 && terminal(board)==-1 && check(board,computer)==0;turn++){
 		if((turn+player_turn)%2 != 0){
-			reprintMoves(board, YELLOW);
+			reprintMoves(board, CYAN);
 			play(board,player);
 		}
 		else{
@@ -204,7 +204,7 @@ void startGame(int difficulty){
    		write_text(" Draw!",20,20,YELLOW,LARGE_FONT);
 	}
 
-	reprintMoves(board, YELLOW);
+	reprintMoves(board, LIGHTRED);
 	write_text(" Press any button to continue...",300,440,YELLOW,LARGE_FONT);
 	getch();
 
