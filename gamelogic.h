@@ -58,8 +58,8 @@ int check(int board[],int computer){
 	else return 0;	
 }
 void play(int board[],int move){
-	write_text(" AI's Turn",20,20,BLACK,LARGE_FONT);
-	write_text(" User's Turn",20,20,YELLOW,LARGE_FONT);
+	write_text(" Computer's Turn",20,20,BLACK,LARGE_FONT);
+	write_text(" User's Turn",20,20,LIGHTRED,LARGE_FONT);
 
 	int valid = 0;
 	int input = getchar();
@@ -189,20 +189,20 @@ void startGame(int difficulty){
 	reprintMoves(board, 0);
 	int score = check(board,computer);
 	if(check(board,computer)==1){
-		write_text(" AI's Turn",20,20,BLACK,LARGE_FONT);
+		write_text(" Computer's Turn",20,20,BLACK,LARGE_FONT);
 		write_text(" User's Turn",20,20,BLACK,LARGE_FONT);
 
-   		write_text(" Computer Won!",20,20,YELLOW,LARGE_FONT);
+   		write_text(" Computer Won!",20,20,CYAN,LARGE_FONT);
 	}
 	else if(check(board,computer)==-1){
-		write_text(" AI's Turn",20,20,BLACK,LARGE_FONT);
+		write_text(" Computer's Turn",20,20,BLACK,LARGE_FONT);
 		write_text(" User's Turn",20,20,BLACK,LARGE_FONT);
-   		write_text(" Player Won!",20,20,YELLOW,LARGE_FONT);
+   		write_text(" Player Won!",20,20,LIGHTRED,LARGE_FONT);
 	}
 	else{
-		write_text(" AI's Turn",20,20,BLACK,LARGE_FONT);
+		write_text(" Computer's Turn",20,20,BLACK,LARGE_FONT);
 		write_text(" User's Turn",20,20,BLACK,LARGE_FONT);
-   		write_text(" Draw!",20,20,YELLOW,LARGE_FONT);
+   		write_text(" Draw!",20,20,MAGENTA,LARGE_FONT);
 	}
 
 	write_text(" Press any button to continue...",300,440,YELLOW,LARGE_FONT);

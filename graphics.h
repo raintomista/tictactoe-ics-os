@@ -24,6 +24,13 @@ void defaultColor(){
 	textcolor(WHITE);
 }
 
+void drawLine(int character, int start_x, int end_x, int y, char color, int size){
+	while(start_x < end_x){
+   		write_char(character, start_x, y, color, size);
+		start_x+=4;
+	}
+}
+
 void drawHorizontalBorder(int start_x, int end_x, int y, char color, int size){
 	while(start_x < end_x){
    		write_char(220, start_x, y, color, size);
@@ -42,27 +49,42 @@ void drawScreenBorders(int targetWidth, int targetHeight){
 	int x = ((width/2)-(targetWidth/2))-1;
 	int y = ((height/2)-(targetHeight/2))-1;
 
-	write_char(201, x, y, YELLOW, LARGE_FONT); //Upper Left Border
-	drawHorizontalBorder(x+8, (x+targetWidth)-2, y, YELLOW, LARGE_FONT);
-	write_char(187, x+targetWidth, y, YELLOW, LARGE_FONT); //Upper Right Border
 
-	drawVerticalBorder(x, y+8, (y+targetHeight)-15, YELLOW, LARGE_FONT);
-	write_char(200, x, y+targetHeight, YELLOW, LARGE_FONT); //Lower Left Border
+	int tempy = y;
+
+	// while(tempy < targetHeight){
+	// 	int tempx = x;
+	// 	while(tempx < targetWidth){
+	// 		write_char(178, tempx, tempy, LIGHTCYAN, LARGE_FONT);
+	// 		tempx+=5;
+	// 	}
+	// 	tempy+=5;
+	// }
+
+	drawLine(178, x+8, (x+targetWidth)-7, y+16, LIGHTCYAN, LARGE_FONT);
+	drawLine(178, x+8, (x+targetWidth)-7, y+targetHeight-9, LIGHTRED, LARGE_FONT);
+
+	drawHorizontalBorder(x, (x+targetWidth)+3, y, DARKGRAY, LARGE_FONT);
+	drawVerticalBorder(x, y+8, (y+targetHeight)+3, DARKGRAY, LARGE_FONT);
+
+	drawHorizontalBorder(x, (x+targetWidth)+3, y+targetHeight, DARKGRAY, LARGE_FONT);
+	drawVerticalBorder(x+targetWidth, y+8, (y+targetHeight)+3, DARKGRAY, LARGE_FONT);
+
+	write_text("[ARROW KEYS]",x+75, y+310, WHITE, LARGE_FONT);
+	write_text("             Navigate            Choose",x+75, y+310, LIGHTGRAY, LARGE_FONT);
+	write_text("                         [SPACE]       ",x+75, y+310, WHITE, LARGE_FONT);
 
 
-	drawHorizontalBorder(x+8, (x+targetWidth)-2, y+targetHeight, YELLOW, LARGE_FONT);
-	drawVerticalBorder(x+targetWidth, y+8, (y+targetHeight)-15, YELLOW, LARGE_FONT);
-	write_char(188, x+targetWidth, y+targetHeight, YELLOW, LARGE_FONT); //Lower Right Border
 }
 
 
 void screenLogo(int x, int y, int spacing){
-	write_text(" _______ _   _______      _______         ",x, y+(1*spacing),YELLOW,LARGE_FONT);
-	write_text("|__   __(_) |__   __|    |__   __|        ",x, y+(2*spacing),YELLOW,LARGE_FONT);
-	write_text("   | |   _  ___| | __ _  ___| | ___   ___ ",x, y+(3*spacing),YELLOW,LARGE_FONT);
-	write_text("   | |  | |/ __| |/ _` |/ __| |/ _ \\ / _ \\ ",x, y+(4*spacing),YELLOW,LARGE_FONT);
-	write_text("   | |  | | (__| | (_| | (__| | (_) |  __/",x, y+(5*spacing),YELLOW,LARGE_FONT);
-	write_text("   |_|  |_|\\___|_|\\__,_|\\___|_|\\___/ \\___|",x, y+(6*spacing),YELLOW,LARGE_FONT);
+	write_text(" _______ _   _______      _______         ",x, y+(1*spacing),LIGHTRED,LARGE_FONT);
+	write_text("|__   __(_) |__   __|    |__   __|        ",x, y+(2*spacing),LIGHTRED,LARGE_FONT);
+	write_text("   | |   _  ___| | __ _  ___| | ___   ___ ",x, y+(3*spacing),LIGHTRED,LARGE_FONT);
+	write_text("   | |  | |/ __| |/ _` |/ __| |/ _ \\ / _ \\ ",x, y+(4*spacing),LIGHTRED,LARGE_FONT);
+	write_text("   | |  | | (__| | (_| | (__| | (_) |  __/",x, y+(5*spacing),LIGHTRED,LARGE_FONT);
+	write_text("   |_|  |_|\\___|_|\\__,_|\\___|_|\\___/ \\___|",x, y+(6*spacing),LIGHTRED,LARGE_FONT);
 }
 
 
@@ -77,42 +99,38 @@ void drawMenu(int targetWidth, int targetHeight){
 	drawScreenBorders(targetWidth, targetHeight);
 	screenLogo(x+58, y+50, 13);
 
-	write_text("Play Easy", x+208, y+200,YELLOW,LARGE_FONT);
-	write_text("Play Hard", x+208, y+225,YELLOW,LARGE_FONT);
-	write_text("Exit", x+208, y+250,YELLOW,LARGE_FONT);
+	write_text("Play Easy", x+208, y+200,LIGHTCYAN,LARGE_FONT);
+	write_text("Play Hard", x+208, y+225,LIGHTCYAN,LARGE_FONT);
+	write_text("Exit", x+208, y+250,LIGHTCYAN,LARGE_FONT);
 }
 
 void drawO(int start_x, int end_x, int start_y, int end_y, int color){
 	int x = start_x+20, y = start_y+20;
 
+	write_char(220, start_x+12, start_y+13, color, LARGE_FONT);
+	write_char(220, end_x-18, start_y+13, color, LARGE_FONT);
+
+	write_char(220, start_x+12, end_y-12, color, LARGE_FONT);
+	write_char(220, start_x+13, end_y-12, color, LARGE_FONT);
+	
 	while(x < end_x-25){
 		write_char(220, x, start_y+5, color, LARGE_FONT);
 		write_char(220, x, end_y-5, color, LARGE_FONT);
 		x++;
 	}
 
-	write_char(220, start_x+12, start_y+13, color, LARGE_FONT);
 	write_char(220, start_x+13, start_y+13, color, LARGE_FONT);
-
-	write_char(220, end_x-18, start_y+13, color, LARGE_FONT);
 	write_char(220, end_x-19	, start_y+13, color, LARGE_FONT);
 
-	// write_char(220, end_x-10, start_y+12, color, LARGE_FONT);
-	// write_char(220, end_x-15, start_y+12, color, LARGE_FONT);
-	// write_char(220, end_x-20, start_y+12, color, LARGE_FONT);
-
-
+	write_char(220, end_x-18, end_y-12, color, LARGE_FONT);
+	write_char(220, end_x-19	, end_y-12, color, LARGE_FONT);
 	while(y < end_y-20){
 		write_char(220, start_x+5, y, color, LARGE_FONT);
 		write_char(220, end_x-10, y, color, LARGE_FONT);
 		y++;
 	}
 
-	write_char(220, start_x+12, end_y-12, color, LARGE_FONT);
-	write_char(220, start_x+13, end_y-12, color, LARGE_FONT);
 
-	write_char(220, end_x-18, end_y-12, color, LARGE_FONT);
-	write_char(220, end_x-19	, end_y-12, color, LARGE_FONT);
 }
 
 
@@ -394,8 +412,7 @@ void drawTile(int start_x1, int end_x1, int start_x2, int end_x2, int start_x3, 
 			x2+=5;
 			x3+=5;
 		}
-		start_y++;
-
+		start_y+=5;
 	}
 }
 
@@ -428,14 +445,14 @@ void drawBoard(int board[], int targetWidth, int targetHeight){
 
 	/*First Tile*/
 	int x1 = x+7, x2 = (x+increment_x)-3;
-	int y1 = y+8, y2 = y+increment_y-8;
+	int y1 = y+8, y2 = y+increment_y-6;
 	TILE1_X = (x1+x2)/2, TILE1_Y = (y1+y2)/2;
 	// drawTile(x1, x2, y1, y2, LIGHTCYAN);
 	// drawX(x1, x2, y1, y2, LIGHTRED);
 
 	/*Second Tile*/
 	int x3 = x+increment_x+7, x4 = x+(increment_x*2)-3;
-	y1 = y+8, y2 = y+increment_y-8;
+	y1 = y+8, y2 = y+increment_y-6;
 	TILE2_X = (x3+x4)/2, TILE2_Y = (y1+y2)/2;
 	// drawTile(x3, x4, y1, y2, LIGHTCYAN);
 	// drawO(x1, x2, y1, y2, CYAN);
@@ -444,7 +461,7 @@ void drawBoard(int board[], int targetWidth, int targetHeight){
 
 	/*Third Tile*/
 	int x5 = x+(increment_x*2)+7, x6 = x+(increment_x*3)-3;
-	y1 = y+8, y2 = y+increment_y-8;
+	y1 = y+8, y2 = y+increment_y-6;
 	TILE3_X = (x5+x6)/2, TILE3_Y = (y1+y2)/2;
 	drawTile(x1, x2, x3, x4, x5, x6, y1, y2, LIGHTCYAN);
 	// drawX(x1, x2, y1, y2, LIGHTRED);

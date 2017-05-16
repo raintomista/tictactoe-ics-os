@@ -19,7 +19,7 @@ int main(){
 	set_graphics(VGA_640X480X16);
 	clrscr();
 	drawMenu(TARGET_WIDTH, TARGET_HEIGHT);
-	drawSelector(cur_x, cur_y, YELLOW, LARGE_FONT);
+	drawSelector(cur_x, cur_y, LIGHTRED, LARGE_FONT);
 
 	do{
 		input = getchar();
@@ -28,13 +28,13 @@ int main(){
 				drawSelector(cur_x, cur_y, BLACK, LARGE_FONT);
 				cur_y = (cur_y-25) < y+200 ? y+250 : (cur_y-25);
 				selector = (selector-1) < 1 ? 3 : selector-1;
-				drawSelector(cur_x, cur_y, YELLOW, LARGE_FONT);
+				drawSelector(cur_x, cur_y, LIGHTRED, LARGE_FONT);
 				break;
 			case KEY_DOWN:
 				drawSelector(cur_x, cur_y, BLACK, LARGE_FONT);
 				cur_y = (cur_y+25) > y+250 ? y+200 : (cur_y+25);
 				selector = (selector+1) > 3 ? 1 : selector+1;
-				drawSelector(cur_x, cur_y, YELLOW, LARGE_FONT);
+				drawSelector(cur_x, cur_y, LIGHTRED, LARGE_FONT);
 
 				break;
 			case KEY_SPACE:
