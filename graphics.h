@@ -82,66 +82,6 @@ void drawMenu(int targetWidth, int targetHeight){
 	write_text("Exit", x+208, y+250,YELLOW,LARGE_FONT);
 }
 
-void drawMove(int board[], int index, int x, int y, char color, int size){
-	if(board[index]==-1) write_char(79, x, y, color, size); //Draw Space
-	else if(board[index] == 1) write_char(88, x, y, color, size);
-	else{
-		write_char(91, x-10, y, color, size);
-		switch(index){
-			case 0:
-				write_char(49, x, y, color, size);
-				break;
-			case 1:
-				write_char(50, x, y, color, size);
-				break;
-			case 2:
-				write_char(51, x, y, color, size);
-				break;
-			case 3:
-				write_char(52, x, y, color, size);
-				break;
-			case 4:
-				write_char(53, x, y, color, size);
-				break;
-			case 5:
-				write_char(54, x, y, color, size);
-				break;
-			case 6:
-				write_char(55, x, y, color, size);
-				break;
-			case 7:
-				write_char(56, x, y, color, size);
-				break;
-			case 8:
-				write_char(57, x, y, color, size);
-				break;
-		}
-		write_char(93, x+10	, y, color, size);
-
-	}
-}
-
-void reprintMoves(int board[], char color){
-	drawMove(board, 0, TILE1_X, TILE1_Y, color, LARGE_FONT); //First Tile
-	drawMove(board, 1, TILE2_X, TILE2_Y, color, LARGE_FONT); //Second Tile
-	drawMove(board, 2, TILE3_X, TILE3_Y, color, LARGE_FONT); //Third Tile
-
-	drawMove(board, 3, TILE4_X, TILE4_Y, color, LARGE_FONT); //Fourth Tile
-	drawMove(board, 4, TILE5_X, TILE5_Y, color, LARGE_FONT); //Fifth Tile
-	drawMove(board, 5, TILE6_X, TILE6_Y, color, LARGE_FONT); //Sixth Tile
-
-	drawMove(board, 6, TILE7_X, TILE7_Y, color, LARGE_FONT); //Seventh Tile
-	drawMove(board, 7, TILE8_X, TILE8_Y, color, LARGE_FONT); //Eight Tile
-	drawMove(board, 8, TILE9_X, TILE9_Y, color, LARGE_FONT); //Nine Tile
-}
-
-void drawTile(int start_x, int end_x, int start_y, int end_y, int color){
-	while(start_y < end_y){
-		drawHorizontalBorder(start_x, end_x, start_y, color, LARGE_FONT);
-		start_y++;
-	}
-}
-
 void drawO(int start_x, int end_x, int start_y, int end_y, int color){
 	int x = start_x+20, y = start_y+20;
 
@@ -201,6 +141,265 @@ void drawX(int start_x, int end_x, int start_y, int end_y, int color){
 	}
 }
 
+
+void drawMove(int board[], int index, int clear_boolean, int size){
+	int targetHeight = 300;
+	int targetWidth = 300;
+	int x = ((width/2)-(targetWidth/2))-1;
+	int y = ((height/2)-(targetHeight/2))-1;
+	int increment_x = targetWidth/3;
+	int increment_y = targetWidth/3;
+
+	int x1, y1, x2, y2;
+	switch(index){
+		case 0:
+			x1 = x+7, x2 = (x+increment_x)-3;
+			y1 = y+8, y2 = y+increment_y-8;
+			TILE1_X = (x1+x2)/2, TILE1_Y = (y1+y2)/2;
+
+			if(board[index] == -1){ //Draw O
+				drawO(x1, x2, y1, y2, CYAN);
+
+			}
+			else if(board[index] == 1){ //Draw X
+				drawX(x1, x2, y1, y2, LIGHTRED);
+			}
+			else{
+				int tempcolor;
+				if(clear_boolean != 1) tempcolor = BLACK;
+				else tempcolor = LIGHTCYAN;
+				write_char(91, TILE1_X-10, TILE1_Y, tempcolor, size);
+				write_char(49, TILE1_X, TILE1_Y, tempcolor, size);
+				write_char(93, TILE1_X+10	, TILE1_Y, tempcolor, size);
+			}
+			break;
+		case 1:
+			x1 = x+increment_x+7, x2 = x+(increment_x*2)-3;
+			y1 = y+8, y2 = y+increment_y-8;
+			TILE2_X = (x1+x2)/2, TILE2_Y = (y1+y2)/2;
+
+			if(board[index] == -1){ //Draw O
+				drawO(x1, x2, y1, y2, CYAN);
+			}
+			else if(board[index] == 1){ //Draw X
+				drawX(x1, x2, y1, y2, LIGHTRED);
+			}
+			else{
+				int tempcolor;
+				if(clear_boolean != 1){ 
+					tempcolor = BLACK;
+				}
+				else{ 
+					tempcolor = LIGHTCYAN;
+				}
+				write_char(91, TILE2_X-10, TILE2_Y, tempcolor, size);
+				write_char(50, TILE2_X, TILE2_Y, tempcolor, size);
+				write_char(93, TILE2_X+10	, TILE2_Y, tempcolor, size);
+			}
+			break;
+		case 2:
+			x1 = x+(increment_x*2)+7, x2 = x+(increment_x*3)-3;
+			y1 = y+8, y2 = y+increment_y-8;
+			TILE3_X = (x1+x2)/2, TILE3_Y = (y1+y2)/2;
+
+			if(board[index] == -1){ //Draw O
+				drawO(x1, x2, y1, y2, CYAN);
+			}
+			else if(board[index] == 1){ //Draw X
+				drawX(x1, x2, y1, y2, LIGHTRED);
+			}
+			else{
+				int tempcolor;
+				if(clear_boolean != 1){ 
+					tempcolor = BLACK;
+				}
+				else{ 
+					tempcolor = LIGHTCYAN;
+				}
+				write_char(91, TILE3_X-10, TILE3_Y, tempcolor, size);
+				write_char(51, TILE3_X, TILE3_Y, tempcolor, size);
+				write_char(93, TILE3_X+10	, TILE3_Y, tempcolor, size);
+			}
+			break;
+		case 3:
+			x1 = x+7, x2 = (x+increment_x)-3;
+			y1 = y+increment_y+8, y2 = y+(increment_y*2)-6;
+			TILE4_X = (x1+x2)/2, TILE4_Y = (y1+y2)/2;
+
+			if(board[index] == -1){ //Draw O
+				drawO(x1, x2, y1, y2, CYAN);
+			}
+			else if(board[index] == 1){ //Draw X
+				drawX(x1, x2, y1, y2, LIGHTRED);
+			}
+			else{
+				int tempcolor;
+				if(clear_boolean != 1){ 
+					tempcolor = BLACK;
+				}
+				else{ 
+					tempcolor = LIGHTCYAN;
+				}
+				write_char(91, TILE4_X-10, TILE4_Y, tempcolor, size);
+				write_char(52, TILE4_X, TILE4_Y, tempcolor, size);
+				write_char(93, TILE4_X+10	, TILE4_Y, tempcolor, size);
+			}
+			break;
+		case 4:
+			x1 = x+increment_x+7, x2 = x+(increment_x*2)-3;
+			y1 = y+increment_y+8, y2 = y+(increment_y*2)-6;
+			TILE5_X = (x1+x2)/2, TILE5_Y = (y1+y2)/2;
+
+			if(board[index] == -1){ //Draw O
+				drawO(x1, x2, y1, y2, CYAN);
+			}
+			else if(board[index] == 1){ //Draw X
+				drawX(x1, x2, y1, y2, LIGHTRED);
+			}
+			else{
+				int tempcolor;
+				if(clear_boolean != 1){ 
+					tempcolor = BLACK;
+				}
+				else{ 
+					tempcolor = LIGHTCYAN;
+				}
+				write_char(91, TILE5_X-10, TILE5_Y, tempcolor, size);
+				write_char(53, TILE5_X, TILE5_Y, tempcolor, size);
+				write_char(93, TILE5_X+10	, TILE5_Y, tempcolor, size);
+			}
+			break;
+		case 5:
+			x1 = x+(increment_x*2)+7, x2 = x+(increment_x*3)-3;
+			y1 = y+increment_y+8, y2 = y+(increment_y*2)-6;
+			TILE6_X = (x1+x2)/2, TILE6_Y = (y1+y2)/2;
+
+			if(board[index] == -1){ //Draw O
+				drawO(x1, x2, y1, y2, CYAN);
+			}
+			else if(board[index] == 1){ //Draw X
+				drawX(x1, x2, y1, y2, LIGHTRED);
+			}
+			else{
+				int tempcolor;
+				if(clear_boolean != 1){ 
+					tempcolor = BLACK;
+				}
+				else{ 
+					tempcolor = LIGHTCYAN;
+				}
+				write_char(91, TILE6_X-10, TILE6_Y, tempcolor, size);
+				write_char(54, TILE6_X, TILE6_Y, tempcolor, size);
+				write_char(93, TILE6_X+10	, TILE6_Y, tempcolor, size);
+			}
+			break;
+		case 6:
+			x1 = x+7, x2 = (x+increment_x)-3;
+			y1 = y+(increment_y*2)+8, y2 = y+(increment_y*3)-6;
+			TILE7_X = (x1+x2)/2, TILE7_Y = (y1+y2)/2;
+
+			if(board[index] == -1){ //Draw O
+				drawO(x1, x2, y1, y2, CYAN);
+			}
+			else if(board[index] == 1){ //Draw X
+				drawX(x1, x2, y1, y2, LIGHTRED);
+			}
+			else{
+				int tempcolor;
+				if(clear_boolean != 1){ 
+					tempcolor = BLACK;
+				}
+				else{ 
+					tempcolor = LIGHTCYAN;
+				}
+				write_char(91, TILE7_X-10, TILE7_Y, tempcolor, size);
+				write_char(55, TILE7_X, TILE7_Y, tempcolor, size);
+				write_char(93, TILE7_X+10	, TILE7_Y, tempcolor, size);
+			}
+			break;
+		case 7:
+			x1 = x+increment_x+7, x2 = x+(increment_x*2)-3;
+			y1 = y+(increment_y*2)+8, y2 = y+(increment_y*3)-6;
+			TILE8_X = (x1+x2)/2, TILE8_Y = (y1+y2)/2;
+
+			if(board[index] == -1){ //Draw O
+				drawO(x1, x2, y1, y2, CYAN);
+			}
+			else if(board[index] == 1){ //Draw X
+				drawX(x1, x2, y1, y2, LIGHTRED);
+			}
+			else{
+				int tempcolor;
+				if(clear_boolean != 1){ 
+					tempcolor = BLACK;
+				}
+				else{ 
+					tempcolor = LIGHTCYAN;
+				}
+				write_char(91, TILE8_X-10, TILE8_Y, tempcolor, size);
+				write_char(56, TILE8_X, TILE8_Y, tempcolor, size);
+				write_char(93, TILE8_X+10	, TILE8_Y, tempcolor, size);
+			}
+			break;
+		case 8:
+			x1 = x+(increment_x*2)+7, x2 = x+(increment_x*3)-3;
+			y1 = y+(increment_y*2)+8, y2 = y+(increment_y*3)-6;
+			TILE9_X = (x1+x2)/2, TILE9_Y = (y1+y2)/2;
+
+			if(board[index] == -1){ //Draw O
+				drawO(x1, x2, y1, y2, CYAN);
+			}
+			else if(board[index] == 1){ //Draw X
+				drawX(x1, x2, y1, y2, LIGHTRED);
+			}
+			else{
+				int tempcolor;
+				if(clear_boolean != 1){ 
+					tempcolor = BLACK;
+				}
+				else{ 
+					tempcolor = LIGHTCYAN;
+				}
+				write_char(91, TILE9_X-10, TILE9_Y, tempcolor, size);
+				write_char(57, TILE9_X, TILE9_Y, tempcolor, size);
+				write_char(93, TILE9_X+10	, TILE9_Y, tempcolor, size);
+			}
+			break;
+
+	}
+}
+
+void reprintMoves(int board[], int clear_boolean){
+	drawMove(board, 0, clear_boolean, LARGE_FONT); //First Tile
+	drawMove(board, 1, clear_boolean, LARGE_FONT); //Second Tile
+	drawMove(board, 2, clear_boolean, LARGE_FONT); //Third Tile
+
+	drawMove(board, 3, clear_boolean, LARGE_FONT); //Fourth Tile
+	drawMove(board, 4, clear_boolean, LARGE_FONT); //Fifth Tile
+	drawMove(board, 5, clear_boolean, LARGE_FONT); //Sixth Tile
+
+	drawMove(board, 6, clear_boolean, LARGE_FONT); //Seventh Tile
+	drawMove(board, 7, clear_boolean, LARGE_FONT); //Eight Tile
+	drawMove(board, 8, clear_boolean, LARGE_FONT); //Nine Tile
+}
+
+void drawTile(int start_x1, int end_x1, int start_x2, int end_x2, int start_x3, int end_x3, int start_y, int end_y, int color){
+	while(start_y < end_y){
+		int x1 = start_x1, x2 = start_x2, x3 = start_x3;
+		while(x1 < end_x1 && x2 < end_x2 && x3 < end_x3){
+	   		write_char(220, x1, start_y, color, LARGE_FONT);
+	   		write_char(220, x2, start_y, color, LARGE_FONT);
+	   		write_char(220, x3, start_y, color, LARGE_FONT);
+			x1+=5;
+			x2+=5;
+			x3+=5;
+		}
+		start_y++;
+
+	}
+}
+
+
 void drawBoard(int board[], int targetWidth, int targetHeight){
 	int x = ((width/2)-(targetWidth/2))-1;
 	int y = ((height/2)-(targetHeight/2))-1;
@@ -231,69 +430,73 @@ void drawBoard(int board[], int targetWidth, int targetHeight){
 	int x1 = x+7, x2 = (x+increment_x)-3;
 	int y1 = y+8, y2 = y+increment_y-8;
 	TILE1_X = (x1+x2)/2, TILE1_Y = (y1+y2)/2;
-	drawTile(x1, x2, y1, y2, LIGHTCYAN);
-	drawX(x1, x2, y1, y2, LIGHTRED);
+	// drawTile(x1, x2, y1, y2, LIGHTCYAN);
+	// drawX(x1, x2, y1, y2, LIGHTRED);
 
 	/*Second Tile*/
-	x1 = x+increment_x+7, x2 = x+(increment_x*2)-3;
+	int x3 = x+increment_x+7, x4 = x+(increment_x*2)-3;
 	y1 = y+8, y2 = y+increment_y-8;
-	TILE2_X = (x1+x2)/2, TILE2_Y = (y1+y2)/2;
-	drawTile(x1, x2, y1, y2, LIGHTCYAN);
-	drawO(x1, x2, y1, y2, CYAN);
+	TILE2_X = (x3+x4)/2, TILE2_Y = (y1+y2)/2;
+	// drawTile(x3, x4, y1, y2, LIGHTCYAN);
+	// drawO(x1, x2, y1, y2, CYAN);
 
 
 
 	/*Third Tile*/
-	x1 = x+(increment_x*2)+7, x2 = x+(increment_x*3)-3;
+	int x5 = x+(increment_x*2)+7, x6 = x+(increment_x*3)-3;
 	y1 = y+8, y2 = y+increment_y-8;
-	TILE3_X = (x1+x2)/2, TILE3_Y = (y1+y2)/2;
-	drawTile(x1, x2, y1, y2, LIGHTCYAN);
-	drawX(x1, x2, y1, y2, LIGHTRED);
+	TILE3_X = (x5+x6)/2, TILE3_Y = (y1+y2)/2;
+	drawTile(x1, x2, x3, x4, x5, x6, y1, y2, LIGHTCYAN);
+	// drawX(x1, x2, y1, y2, LIGHTRED);
 
 
 	/*Fourth Tile*/
 	x1 = x+7, x2 = (x+increment_x)-3;
 	y1 = y+increment_y+8, y2 = y+(increment_y*2)-6;
 	TILE4_X = (x1+x2)/2, TILE4_Y = (y1+y2)/2;
-	drawTile(x1, x2, y1, y2, LIGHTCYAN);
-	drawO(x1, x2, y1, y2, CYAN);
+	// drawTile(x1, x2, y1, y2, LIGHTCYAN);
+	// drawO(x1, x2, y1, y2, CYAN);
 
 	/*Fifth Tile*/
-	x1 = x+increment_x+7, x2 = x+(increment_x*2)-3;
+	x3 = x+increment_x+7, x4 = x+(increment_x*2)-3;
 	y1 = y+increment_y+8, y2 = y+(increment_y*2)-6;
-	TILE5_X = (x1+x2)/2, TILE5_Y = (y1+y2)/2;
-	drawTile(x1, x2, y1, y2, LIGHTCYAN);
-	drawX(x1, x2, y1, y2, LIGHTRED);
+	TILE5_X = (x3+x4)/2, TILE5_Y = (y1+y2)/2;
+	// drawTile(x1, x2, y1, y2, LIGHTCYAN);
 
 	/*Sixth Tile*/
-	x1 = x+(increment_x*2)+7, x2 = x+(increment_x*3)-3;
+	x5 = x+(increment_x*2)+7, x6 = x+(increment_x*3)-3;
 	y1 = y+increment_y+8, y2 = y+(increment_y*2)-6;
-	TILE6_X = (x1+x2)/2, TILE6_Y = (y1+y2)/2;
-	drawTile(x1, x2, y1, y2, LIGHTCYAN);
-	drawO(x1, x2, y1, y2, CYAN);
+	TILE6_X = (x5+x6)/2, TILE6_Y = (y1+y2)/2;
+	drawTile(x1, x2, x3, x4, x5, x6, y1, y2, LIGHTCYAN);
+
+	// drawTile(x1, x2, y1, y2, LIGHTCYAN);
+	// drawO(x1, x2, y1, y2, CYAN);
 
 	/*Seventh Tile*/
 	x1 = x+7, x2 = (x+increment_x)-3;
 	y1 = y+(increment_y*2)+8, y2 = y+(increment_y*3)-6;
 	TILE7_X = (x1+x2)/2, TILE7_Y = (y1+y2)/2;
-	drawTile(x1, x2, y1, y2, LIGHTCYAN);
-	drawX(x1, x2, y1, y2, LIGHTRED);
+	// drawTile(x1, x2, y1, y2, LIGHTCYAN);
+	// drawX(x1, x2, y1, y2, LIGHTRED);
 
 	/*Eighth Tile*/
-	x1 = x+increment_x+7, x2 = x+(increment_x*2)-3;
+	x3 = x+increment_x+7, x4	 = x+(increment_x*2)-3;
 	y1 = y+(increment_y*2)+8, y2 = y+(increment_y*3)-6;
-	TILE8_X = (x1+x2)/2, TILE8_Y = (y1+y2)/2;
-	drawTile(x1, x2, y1, y2, LIGHTCYAN);
-	drawO(x1, x2, y1, y2, CYAN);
+	TILE8_X = (x3+x4	)/2, TILE8_Y = (y1+y2)/2;
+	// drawTile(x1, x2, y1, y2, LIGHTCYAN);
+	// drawO(x1, x2, y1, y2, CYAN);
 
 
 	/*Ninth Tile*/
-	x1 = x+(increment_x*2)+7, x2 = x+(increment_x*3)-3;
+	x5 = x+(increment_x*2)+7, x6 = x+(increment_x*3)-3;
 	y1 = y+(increment_y*2)+8, y2 = y+(increment_y*3)-6;
-	TILE9_X = (x1+x2)/2, TILE9_Y = (y1+y2)/2;
-	drawTile(x1, x2, y1, y2, LIGHTCYAN);
-	drawX(x1, x2, y1, y2, LIGHTRED);
+	TILE9_X = (x5+x6)/2, TILE9_Y = (y1+y2)/2;
+	// drawTile(x1, x2, y1, y2, LIGHTCYAN);
+	// drawX(x1, x2, y1, y2, LIGHTRED);
 
-	reprintMoves(board, LIGHTRED);
+	drawTile(x1, x2, x3, x4, x5, x6, y1, y2, LIGHTCYAN);
+
+
+	reprintMoves(board, 0);
 }
 

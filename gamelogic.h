@@ -58,6 +58,7 @@ int check(int board[],int computer){
 	else return 0;	
 }
 void play(int board[],int move){
+	write_text(" AI's Turn",20,20,BLACK,LARGE_FONT);
 	write_text(" User's Turn",20,20,YELLOW,LARGE_FONT);
 
 	int valid = 0;
@@ -67,73 +68,65 @@ void play(int board[],int move){
 		switch(input){
 			case 49:
 				if(board[0] == 0){
-					reprintMoves(board, LIGHTCYAN);
+					drawMove(board, 0, 1, LARGE_FONT);
 					board[0] = move;
-					write_text(" User's Turn",20,20,BLACK,LARGE_FONT);
 					valid = 1;
 				}
 				break;
 			case 50:
 				if(board[1] == 0){
-					reprintMoves(board, LIGHTCYAN);
+					drawMove(board, 1, 1, LARGE_FONT);
 					board[1] = move;
-					write_text(" User's Turn",20,20,BLACK,LARGE_FONT);
 					valid = 1;
 				}
 				break;
 			case 51:
 				if(board[2] == 0){
-					reprintMoves(board, LIGHTCYAN);
+					drawMove(board, 2, 1, LARGE_FONT);
 					board[2] = move;
-					write_text(" User's Turn",20,20,BLACK,LARGE_FONT);
 					valid = 1;
 				}
 				break;
 			case 52:
 				if(board[3] == 0){
-					reprintMoves(board, LIGHTCYAN);
+					drawMove(board, 3, 1, LARGE_FONT);
 					board[3] = move;
-					write_text(" User's Turn",20,20,BLACK,LARGE_FONT);
 					valid = 1;
 				}
 				break;
 			case 53:
 				if(board[4] == 0){
-					reprintMoves(board, LIGHTCYAN);
+					drawMove(board, 4, 1, LARGE_FONT);
 					board[4] = move;
-					write_text(" User's Turn",20,20,BLACK,LARGE_FONT);
 					valid = 1;
 				}
 				break;
 			case 54:
 				if(board[5] == 0){
-					reprintMoves(board, LIGHTCYAN);
+					drawMove(board, 5, 1, LARGE_FONT);
 					board[5] = move;
-					write_text(" User's Turn",20,20,BLACK,LARGE_FONT);
 					valid = 1;
 				}
 				break;
 			case 55:
 				if(board[6] == 0){
-					reprintMoves(board, LIGHTCYAN);
+					drawMove(board, 6, 1, LARGE_FONT);
 					board[6] = move;
-					write_text(" User's Turn",20,20,BLACK,LARGE_FONT);
 					valid = 1;
 				}
 				break;
 			case 56:
 				if(board[7] == 0){
-					reprintMoves(board, LIGHTCYAN);
+					drawMove(board, 7, 1, LARGE_FONT);
 					board[7] = move;
-					write_text(" User's Turn",20,20,BLACK,LARGE_FONT);
 					valid = 1;
 				}
 				break;
 			case 57:
 				if(board[8] == 0){
-					reprintMoves(board, LIGHTCYAN);
+					drawMove(board, 8, 1, LARGE_FONT);
 					board[8] = move;
-	    			write_text(" User's Turn",20,20,BLACK,LARGE_FONT);
+	 
 	    			valid = 1;
 				}
 				break;
@@ -178,7 +171,7 @@ void startGame(int difficulty){
 
 	for(turn=0;turn<9 && terminal(board)==-1 && check(board,computer)==0;turn++){
 		if((turn+player_turn)%2 != 0){
-			reprintMoves(board, CYAN);
+			reprintMoves(board, 0);
 			play(board,player);
 		}
 		else{
@@ -193,18 +186,25 @@ void startGame(int difficulty){
 		}
 	}
 
+	reprintMoves(board, 0);
 	int score = check(board,computer);
 	if(check(board,computer)==1){
+		write_text(" AI's Turn",20,20,BLACK,LARGE_FONT);
+		write_text(" User's Turn",20,20,BLACK,LARGE_FONT);
+
    		write_text(" Computer Won!",20,20,YELLOW,LARGE_FONT);
 	}
 	else if(check(board,computer)==-1){
+		write_text(" AI's Turn",20,20,BLACK,LARGE_FONT);
+		write_text(" User's Turn",20,20,BLACK,LARGE_FONT);
    		write_text(" Player Won!",20,20,YELLOW,LARGE_FONT);
 	}
 	else{
+		write_text(" AI's Turn",20,20,BLACK,LARGE_FONT);
+		write_text(" User's Turn",20,20,BLACK,LARGE_FONT);
    		write_text(" Draw!",20,20,YELLOW,LARGE_FONT);
 	}
 
-	reprintMoves(board, LIGHTRED);
 	write_text(" Press any button to continue...",300,440,YELLOW,LARGE_FONT);
 	getch();
 
